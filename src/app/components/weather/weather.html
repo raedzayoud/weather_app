@@ -1,0 +1,25 @@
+<div class="weather-app">
+  <div class="container">
+    <h2>Weather App</h2>
+
+    <input
+      type="text"
+      placeholder="Enter city name"
+      [(ngModel)]="city"
+      (keyup.enter)="getWeather()"
+    />
+
+    <button *ngIf="!search" (click)="getWeather()" [disabled]="!city?.trim()">Search</button>
+
+    <button *ngIf="search" disabled>Searching...</button>
+
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+    <div *ngIf="weatherData" class="result">
+      <h3>{{ weatherData.name }}</h3>
+      <p>Temperature: {{ weatherData.main.temp }} °C</p>
+      <p>Humidity: {{ weatherData.main.humidity }}%</p>
+      <p>Description: {{ weatherData.weather[0].description }}</p>
+    </div>
+  </div>
+</div>
