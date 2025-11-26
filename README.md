@@ -55,3 +55,5 @@ Once the server is running, open your browser and navigate to `http://localhost:
   - This usually means the city was not found by OpenWeather.
   - Try `city,country_code` (e.g., `Lagos,NG`, `New York,US`).
   - Consider using the Geocoding API to search and then query by `lat`/`lon`.
+## Demo video
+[ enjoy ](https://drive.google.com/file/d/1d0X0XFbOlsC08uD-_E9UOmsonzx75eks/view?usp=drive_link)
