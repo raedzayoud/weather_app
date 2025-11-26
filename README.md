@@ -2,6 +2,39 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.0.
 
+## Prerequisites
+
+- Node.js 18 or 20 (LTS recommended)
+- npm 9+
+- Angular CLI installed globally (optional):
+
+```bash
+npm install -g @angular/cli
+```
+
+## Setup
+
+1) Install dependencies:
+
+```bash
+npm install
+```
+
+2) Install Zone.js (required for Angular change detection):
+
+```bash
+npm install zone.js@^0.14 --save
+```
+
+3) Configure OpenWeather API key:
+
+- By default, the key is set inside `src/app/service/api/weather/weather-service.ts`.
+- Replace the placeholder with your own key if needed:
+
+```ts
+private apiKey = 'YOUR_OPENWEATHER_API_KEY';
+```
+
 ## Development server
 
 To start a local development server, run:
@@ -12,48 +45,13 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+## Troubleshooting
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Zone.js error (NG0908 / failed to resolve import "zone.js"):
+  - Run `npm install zone.js@^0.14 --save`.
+  - Ensure `import 'zone.js';` exists in `src/main.ts`.
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Weather request returns 404:
+  - This usually means the city was not found by OpenWeather.
+  - Try `city,country_code` (e.g., `Lagos,NG`, `New York,US`).
+  - Consider using the Geocoding API to search and then query by `lat`/`lon`.
